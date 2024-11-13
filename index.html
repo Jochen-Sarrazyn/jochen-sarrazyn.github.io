@@ -134,13 +134,27 @@
       <label for="phone">Telefoonnummer:</label>
       <input type="tel" name="phone" id="phone">
 
-      <label for="address">Adres:</label>
-      <input type="text" name="address" id="address" required>
+      <label for="street">Straatnaam en huisnummer:</label>
+      <input type="text" name="street" id="street" required>
+
+      <label for="postal">Postcode:</label>
+      <input type="text" name="postal" id="postal" required>
+
+      <label for="city">Woonplaats:</label>
+      <input type="text" name="city" id="city" required>
+
+      <label for="comments">Opmerkingen:</label>
+      <input type="text" name="comments" id="comments">
 
       <!-- Verborgen veld voor gekozen foto's en hoeveelheden -->
       <input type="hidden" name="selectedPhotos" id="selectedPhotos">
       <button type="submit" onclick="submitForm()">Verzend</button>
     </form>
+    <p>
+      Bij problemen kan je ons bereiken via jochensarrazyn@gmail.com
+
+      
+    </p>
   </div>
 
   <script>
