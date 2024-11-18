@@ -29,6 +29,9 @@
             padding: 15px;
             border: 1px solid #ccc;
         }
+        .hidden-form {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -37,77 +40,12 @@
     <div class="cart">
         <h2>Your Selection</h2>
         <ul id="selectedPhotos"></ul>
-        <button id="checkoutButton" disabled>Checkout</button>
+        <form id="checkoutForm" action="https://formspree.io/meqarbpj" method="POST" class="hidden-form">
+            <input type="hidden" name="selectedItems" id="hiddenInput">
+            <button id="checkoutButton" type="submit" disabled>Checkout</button>
+        </form>
     </div>
-    
-    <form action="https://formspree.io/meqarbpj" method="POST" class="form-section">
-      <h2>Contact Informatie</h2>
 
-      <label for="comments">Opmerkingen:</label>
-      <input type="text" name="comments" id="comments">
-
-      <!-- Verborgen veld voor gekozen foto's en hoeveelheden -->
-      <input type="hidden" name="selectedPhotos" id="selectedPhotos">
-      <p></p>
-      <button type="submit" onclick="submitForm()">Verzend</button>
-    </form>
     <script src="script.js"></script>
-    <script>
-        
-        
-        const checkboxes = document.querySelectorAll('.photo-card');
-        const quantityFields = document.querySelectorAll('.quantity-input');
-        const totalPriceElement = document.getElementById('totalPrice');
-        const selectedPhotosField = document.getElementById('selectedPhotos');
-    
-        checkboxes.forEach(checkbox => {
-          checkbox.addEventListener('change', updatePrices);
-        });
-    
-        quantityFields.forEach(field => {
-          field.addEventListener('input', updatePrices);
-        });
-    
-        function updatePrices() {
-          let totalPrice = 0;
-    
-          checkboxes.forEach((checkbox, index) => {
-            const quantityField = quantityFields[index];
-            const price = parseFloat(checkbox.getAttribute('data-price'));
-            const quantity = parseInt(quantityField.value);
-    
-            if (checkbox.checked && quantity > 0) {
-              totalPrice += price * quantity;
-            }
-          });
-    
-          totalPriceElement.textContent = totalPrice.toFixed(0);
-        }
-    
-        checkboxes.forEach((checkbox, index) => {
-          checkbox.addEventListener('change', () => {
-            const quantityField = quantityFields[index];
-            if (checkbox.checked) {
-              quantityField.disabled = false;
-            } else {
-              quantityField.disabled = true;
-              quantityField.value = 0;
-            }
-          });
-        });
-    
-        function submitForm() {
-          let selectedPhotos = [];
-    
-          checkboxes.forEach((checkbox, index) => {
-            const quantityField = quantityFields[index];
-            if (checkbox.checked && quantityField.value > 0) {
-              selectedPhotos.push(`${checkbox.getAttribute('data-photo')}: ${quantityField.value}`);
-            }
-          });
-    
-          selectedPhotosField.value = selectedPhotos.join(', ');
-        }
-    </script>
 </body>
 </html>
