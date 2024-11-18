@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <ul id="renderTxt_list">
+    </ul>
+    <input type="button" id="lesen" value="Read Data" />
+</body>
+
+<script>
+    $.ajax('data.txt', {
+        success: fileRetrieved
+    });
+    function fileRetrieved(contents) {
+        var lines = contents.split('\n');
+	        for(var i = 0; i < lines.length; i += 1) {
+            createListElement(lines[i]);
+        }
+    }
+    function createListElement(text) {
+        var into = $('ul');
+        var el = $('<li></li>').html(text);
+        el.appendTo(into);
+    }
+    var text = $('#text').html();
+    fileRetrieved(text);
+</script>
+
+<pre id="text">
+		ters
+		kj
+	</pre>
+<div id="result"></div>
+
+</html>
