@@ -22,13 +22,8 @@ fetch('photos.txt')
             card.innerHTML = `
                 <img src="images/${fileName.trim()}" alt="${description?.trim() || ''}">
                 <p>${description?.trim() || 'No description'}</p>
+                <input type="number" min="0" value="0" class="quantity-input" placeholder="Quantity">
             `;
-
-            // Add click event for selection
-            card.addEventListener('click', () => {
-                card.classList.toggle('selected');
-                updateCart();
-            });
 
             // Append the card to the gallery
             gallery.appendChild(card);
@@ -40,32 +35,61 @@ fetch('photos.txt')
 
 // Update the selection cart
 function updateCart() {
-    const selectedPhotos = document.querySelectorAll('.photo-card.selected');
+    const cards = document.querySelectorAll('.photo-card');
     const cartList = document.getElementById('selectedPhotos');
     const checkoutButton = document.getElementById('checkoutButton');
 
     // Clear the cart list
     cartList.innerHTML = '';
 
-    // Add selected photos to the cart list
-    selectedPhotos.forEach(photo => {
-        const fileName = photo.dataset.fileName;
+    // Track if there are any items selected
+    let hasItems = false;
 
-        const listItem = document.createElement('li');
-        listItem.textContent = fileName;
+    // Process each card
+    cards.forEach(card => {
+        const quantityInput = card.querySelector('.quantity-input');
+        const quantity = parseInt(quantityInput.value, 10);
+        const fileName = card.dataset.fileName;
 
-        cartList.appendChild(listItem);
+        // Add to the cart if quantity > 0
+        if (quantity > 0) {
+            hasItems = true;
+
+            const listItem = document.createElement('li');
+            listItem.textContent = `${fileName} - Quantity: ${quantity}`;
+            cartList.appendChild(listItem);
+        }
     });
 
     // Enable/Disable checkout button
-    checkoutButton.disabled = selectedPhotos.length === 0;
+    checkoutButton.disabled = !hasItems;
 }
+
+// Add event listeners to update the cart dynamically
+document.addEventListener('input', (event) => {
+    if (event.target.classList.contains('quantity-input')) {
+        updateCart();
+    }
+});
 
 // Checkout button click event
 document.getElementById('checkoutButton').addEventListener('click', () => {
-    const selectedPhotos = Array.from(document.querySelectorAll('.photo-card.selected'))
-        .map(photo => photo.dataset.fileName);
+    const cards = document.querySelectorAll('.photo-card');
+    const selectedItems = [];
 
-    alert(`You have selected: ${selectedPhotos.join(', ')}`);
-    // Here you can handle the checkout process (e.g., send data to a server)
+    // Collect selected items and quantities
+    cards.forEach(card => {
+        const quantityInput = card.querySelector('.quantity-input');
+        const quantity = parseInt(quantityInput.value, 10);
+        const fileName = card.dataset.fileName;
+
+        if (quantity > 0) {
+            selectedItems.push({ fileName, quantity });
+        }
+    });
+
+    // Display the selected items in an alert (or process the data)
+    alert(`You have selected:\n${selectedItems.map(item => `${item.fileName} - Quantity: ${item.quantity}`).join('\n')}`);
+
+    // Here you can send the selected items to a server for processing
 });
