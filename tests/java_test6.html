@@ -6,10 +6,20 @@
     <title>Dynamic Content from Text File</title>
 </head>
 <body>
-    <photo-item id="renderTxt_list">
-    
-    <input type="button" id="lesen" value="Read Data" />
+    <div class="card">
+        <p>Card Content: <span class="from_txt"></span></p>
+    </div>
+    <div class="card">
+        <p>Card Content: <span class="from_txt"></span></p>
+    </div>
+    <div class="card">
+        <p>Card Content: <span class="from_txt"></span></p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
+
 <script>
     $.ajax('data.txt', {
         success: fileRetrieved
