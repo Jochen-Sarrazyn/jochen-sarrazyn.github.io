@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Selector</title>
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .photo-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            width: 200px;
+        }
+        .photo-card img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+        .selected {
+            border: 3px solid green;
+        }
+        .cart {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Photo Selector</h1>
+    <div class="gallery"></div>
+    <div class="cart">
+        <h2>Your Selection</h2>
+        <ul id="selectedPhotos"></ul>
+        <button id="checkoutButton" disabled>Checkout</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
