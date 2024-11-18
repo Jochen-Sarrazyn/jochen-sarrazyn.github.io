@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laad Data uit een TXT-bestand met AJAX</title>
+</head>
+<body>
+  <h1>Gegevens uit TXT-bestand</h1>
+  <div id="content">
+    <!-- De inhoud van data.txt wordt hier weergegeven -->
+  </div>
+
+  <!-- jQuery Library -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    // AJAX-aanroep om het txt-bestand te laden
+    $.ajax({
+      url: 'data.txt',           // Pad naar het .txt-bestand
+      method: 'GET',              // Type verzoek: GET om gegevens op te halen
+      dataType: 'text',           // Specificeer dat het type data tekst is
+      success: function(data) {   // Functie wordt uitgevoerd bij succes
+        $('#content').text(data); // Plaatst de tekst in het element met id="content"
+      },
+      error: function(xhr, status, error) { // Functie bij fout
+        console.error('Kan het bestand niet laden:', error);
+        $('#content').text('Kan de data niet laden.');
+      }
+    });
+  </script>
+</body>
+</html>
