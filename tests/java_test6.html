@@ -19,14 +19,17 @@
     function fileRetrieved(contents) {
         var lines = contents.split('\n');
 	        for(var i = 0; i < lines.length; i += 1) {
-            createListElement(lines[i]);
+            
+            const newCard = document.createElement('div');
+            newCard.className = 'photo-item';
+            newCard.innerHTML = '<img src="Cards/${lines[i]}" alt="${lines[i]}">\n<label><input type="checkbox" class="photo-checkbox" data-price="1" data-photo="${lines[i]}">${lines[i]}</label>\n<input type="number" class="photo-quantity" min="0" value="0" data-price="1" disabled>';
+            cardContainer.appendChild(newCard);
         }
     }
     function createListElement(text) {
-        const newCard = document.createElement('div');
-        newCard.className = 'photo-item';
-        newCard.innerHTML = '<img src="Cards/${lines[i]}" alt="${lines[i]}">\n<label><input type="checkbox" class="photo-checkbox" data-price="1" data-photo="${lines[i]}">${lines[i]}</label>\n<input type="number" class="photo-quantity" min="0" value="0" data-price="1" disabled>';
-        cardContainer.appendChild(newCard);
+        var into = $('ul');
+        var el = $('<li></li>').html(text);
+        el.appendTo(into);
         
     }
     var text = $('#text').html();
