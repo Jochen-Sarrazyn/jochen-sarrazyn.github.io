@@ -52,5 +52,60 @@
       <button type="submit" onclick="submitForm()">Verzend</button>
     </form>
     <script src="script.js"></script>
+    <script>
+        const checkboxes = document.querySelectorAll('.photo-checkbox');
+        const quantityFields = document.querySelectorAll('.photo-quantity');
+        const totalPriceElement = document.getElementById('totalPrice');
+        const selectedPhotosField = document.getElementById('selectedPhotos');
+    
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', updatePrices);
+        });
+    
+        quantityFields.forEach(field => {
+          field.addEventListener('input', updatePrices);
+        });
+    
+        function updatePrices() {
+          let totalPrice = 0;
+    
+          checkboxes.forEach((checkbox, index) => {
+            const quantityField = quantityFields[index];
+            const price = parseFloat(checkbox.getAttribute('data-price'));
+            const quantity = parseInt(quantityField.value);
+    
+            if (checkbox.checked && quantity > 0) {
+              totalPrice += price * quantity;
+            }
+          });
+    
+          totalPriceElement.textContent = totalPrice.toFixed(0);
+        }
+    
+        checkboxes.forEach((checkbox, index) => {
+          checkbox.addEventListener('change', () => {
+            const quantityField = quantityFields[index];
+            if (checkbox.checked) {
+              quantityField.disabled = false;
+            } else {
+              quantityField.disabled = true;
+              quantityField.value = 0;
+            }
+          });
+        });
+    
+        function submitForm() {
+          let selectedPhotos = [];
+    
+          checkboxes.forEach((checkbox, index) => {
+            const quantityField = quantityFields[index];
+            if (checkbox.checked && quantityField.value > 0) {
+              selectedPhotos.push(`${checkbox.getAttribute('data-photo')}: ${quantityField.value}`);
+            }
+          });
+    
+          selectedPhotosField.value = selectedPhotos.join(', ');
+        }
+    </script>
 </body>
 </html>
