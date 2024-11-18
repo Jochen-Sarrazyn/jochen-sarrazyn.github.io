@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Content from Text File</title>
+    <title>List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
+
 <body>
-    <div class="card">
-        <p>Card Content: <span class="from_txt"></span></p>
-    </div>
-    <div class="card">
-        <p>Card Content: <span class="from_txt"></span></p>
-    </div>
-    <div class="card">
-        <p>Card Content: <span class="text"></span></p>
-    </div>
-
+    <ul id="renderTxt_list">
+    </ul>
+    <input type="button" id="lesen" value="Read Data" />
 </body>
-
 
 <script>
     $.ajax('data.txt', {
@@ -25,15 +18,25 @@
     });
     function fileRetrieved(contents) {
         var lines = contents.split('\n');
-        for (let i = placeholders.length; i < lines.length; i++) {
-            const newCard = document.createElement('div');
-            newCard.className = 'photo-item';
-            newCard.innerHTML = '<img src="Cards/${lines[i]}" alt="${lines[i]}">\n<label><input type="checkbox" class="photo-checkbox" data-price="1" data-photo="${lines[i]}">${lines[i]}</label>\n<input type="number" class="photo-quantity" min="0" value="0" data-price="1" disabled>';
-            cardContainer.appendChild(newCard);
+	        for(var i = 0; i < lines.length; i += 1) {
+            createListElement(lines[i]);
         }
+    }
+    function createListElement(text) {
+        const newCard = document.createElement('div');
+        newCard.className = 'photo-item';
+        newCard.innerHTML = '<img src="Cards/${lines[i]}" alt="${lines[i]}">\n<label><input type="checkbox" class="photo-checkbox" data-price="1" data-photo="${lines[i]}">${lines[i]}</label>\n<input type="number" class="photo-quantity" min="0" value="0" data-price="1" disabled>';
+        cardContainer.appendChild(newCard);
+        
     }
     var text = $('#text').html();
     fileRetrieved(text);
 </script>
+
+<pre id="text">
+		ters
+		kj
+	</pre>
+<div id="result"></div>
 
 </html>
