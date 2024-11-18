@@ -22,7 +22,7 @@ fetch('photos.txt')
             card.innerHTML = `
                 <img src="images/${fileName.trim()}" alt="${description?.trim() || ''}">
                 <p>${description?.trim() || 'No description'}</p>
-                <input type="number" min="0" value="0" class="quantity-input" placeholder="Quantity">
+                <input type="number" min="0" value="1" class="quantity-input" placeholder="Quantity">
             `;
 
             // Append the card to the gallery
