@@ -22,7 +22,7 @@ fetch('photos.txt')
             card.innerHTML = `
                 <img src="images/${fileName.trim()}" alt="${description?.trim() || ''}">
                 <p>${description?.trim() || 'No description'}</p>
-                <input type="number" min="0" value="1" class="quantity-input" placeholder="Quantity">
+                <input type="number" min="0" value="0" class="quantity-input" placeholder="Quantity">
             `;
 
             // Append the card to the gallery
@@ -38,22 +38,22 @@ function updateCart() {
     const cards = document.querySelectorAll('.photo-card');
     const cartList = document.getElementById('selectedPhotos');
     const checkoutButton = document.getElementById('checkoutButton');
+    const hiddenInput = document.getElementById('hiddenInput');
 
     // Clear the cart list
     cartList.innerHTML = '';
 
-    // Track if there are any items selected
-    let hasItems = false;
+    // Collect selected items
+    const selectedItems = [];
 
-    // Process each card
     cards.forEach(card => {
         const quantityInput = card.querySelector('.quantity-input');
         const quantity = parseInt(quantityInput.value, 10);
         const fileName = card.dataset.fileName;
 
-        // Add to the cart if quantity > 0
+        // Add to cart and hidden form if quantity > 0
         if (quantity > 0) {
-            hasItems = true;
+            selectedItems.push({ fileName, quantity });
 
             const listItem = document.createElement('li');
             listItem.textContent = `${fileName} - Quantity: ${quantity}`;
@@ -61,8 +61,11 @@ function updateCart() {
         }
     });
 
+    // Populate the hidden form input with the selected items as a JSON string
+    hiddenInput.value = JSON.stringify(selectedItems);
+
     // Enable/Disable checkout button
-    checkoutButton.disabled = !hasItems;
+    checkoutButton.disabled = selectedItems.length === 0;
 }
 
 // Add event listeners to update the cart dynamically
@@ -70,26 +73,4 @@ document.addEventListener('input', (event) => {
     if (event.target.classList.contains('quantity-input')) {
         updateCart();
     }
-});
-
-// Checkout button click event
-document.getElementById('checkoutButton').addEventListener('click', () => {
-    const cards = document.querySelectorAll('.photo-card');
-    const selectedItems = [];
-
-    // Collect selected items and quantities
-    cards.forEach(card => {
-        const quantityInput = card.querySelector('.quantity-input');
-        const quantity = parseInt(quantityInput.value, 10);
-        const fileName = card.dataset.fileName;
-
-        if (quantity > 0) {
-            selectedItems.push({ fileName, quantity });
-        }
-    });
-
-    // Display the selected items in an alert (or process the data)
-    alert(`You have selected:\n${selectedItems.map(item => `${item.fileName} - Quantity: ${item.quantity}`).join('\n')}`);
-
-    // Here you can send the selected items to a server for processing
 });
