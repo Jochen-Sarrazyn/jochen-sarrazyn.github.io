@@ -6,22 +6,25 @@
     <title>Dynamic Content from Text File</title>
 </head>
 <body>
-
-    <script>
-        $.ajax('data.txt', {
-            success: fileRetrieved
-        });
-        function fileRetrieved(contents) {
-            var lines = contents.split('\n');
-            for (let i = placeholders.length; i < lines.length; i++) {
-                const newCard = document.createElement('div');
-                newCard.className = 'photo-item';
-                newCard.innerHTML = '<img src="Cards/${lines[i]}" alt="${lines[i]}">\n<label><input type="checkbox" class="photo-checkbox" data-price="1" data-photo="${lines[i]}">${lines[i]}</label>\n<input type="number" class="photo-quantity" min="0" value="0" data-price="1" disabled>';
-                cardContainer.appendChild(newCard);
-            }
-        }
-        var text = $('#text').html();
-        fileRetrieved(text);
-    </script>
+    <photo-item id="renderTxt_list">
+    
+    <input type="button" id="lesen" value="Read Data" />
 </body>
+<script>
+    $.ajax('data.txt', {
+        success: fileRetrieved
+    });
+    function fileRetrieved(contents) {
+        var lines = contents.split('\n');
+        for (let i = placeholders.length; i < lines.length; i++) {
+            const newCard = document.createElement('div');
+            newCard.className = 'photo-item';
+            newCard.innerHTML = '<img src="Cards/${lines[i]}" alt="${lines[i]}">\n<label><input type="checkbox" class="photo-checkbox" data-price="1" data-photo="${lines[i]}">${lines[i]}</label>\n<input type="number" class="photo-quantity" min="0" value="0" data-price="1" disabled>';
+            cardContainer.appendChild(newCard);
+        }
+    }
+    var text = $('#text').html();
+    fileRetrieved(text);
+</script>
+
 </html>
