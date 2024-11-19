@@ -2,3 +2,6 @@ photo1.jpg,Beautiful Sunset
 photo2.jpg,Mountain Landscape
 photo3.jpg,Captivating Forest
 photo4.jpg,Ocean View
+photo1.jpg,descr
+photo2.jpg,
+photo3.jpg,
