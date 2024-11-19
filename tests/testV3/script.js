@@ -18,7 +18,7 @@ fetch('photos.txt')
             const card = document.createElement('div');
             card.className = 'photo-card';
             card.dataset.fileName = fileName.trim();
-            card.dataset.description = description.trim();
+            card.dataset.description = description?.trim();
 
             card.innerHTML = `
                 <img src="images/${fileName.trim()}" alt="${description?.trim() || ''}">
