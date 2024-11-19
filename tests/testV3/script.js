@@ -50,6 +50,7 @@ function updateCart() {
         const quantityInput = card.querySelector('.quantity-input');
         const quantity = parseInt(quantityInput.value, 10);
         const fileName = card.dataset.fileName;
+        const description = card.dataset.description;
 
         // Add to cart and hidden form if quantity > 0
         if (quantity > 0) {
