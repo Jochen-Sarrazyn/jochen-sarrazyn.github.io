@@ -56,7 +56,7 @@ function updateCart() {
             selectedItems.push({ fileName, quantity });
 
             const listItem = document.createElement('li');
-            listItem.textContent = `${fileName} - Quantity: ${quantity}`;
+            listItem.textContent = `${description} ${fileName} - Quantity: ${quantity}`;
             cartList.appendChild(listItem);
         }
     });
