@@ -61,12 +61,14 @@ function updateCart() {
             const listItem = document.createElement('li');
             listItem.textContent = `${description} - Aantal: ${quantity}`;
             cartList.appendChild(listItem);
-            total_cards += quantity;
+            total_cards += quantity;        // Add to the total amount of cards
         }
-        const total_text = document.createElement('p');
-        total_text.textContent = `Totaal: ${total_cards}`;
-        cartList.appendChild(total_text)
     });
+
+    // Display total amount of cards
+    const total_text = document.createElement('p');
+    total_text.textContent = `Totaal: ${total_cards}`;
+    cartList.appendChild(total_text);
 
     // Populate the hidden form input with the selected items as a JSON string
     hiddenInput.value = JSON.stringify(selectedItems);
