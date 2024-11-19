@@ -38,14 +38,14 @@ fetch('photos.txt')
 function updateCart() {
     const cards = document.querySelectorAll('.photo-card');
     const cartList = document.getElementById('selectedPhotos');
-    const total_html = document.getElementById('TotalCards');
+    const total_html = document.getElementById('totalCards');
     const checkoutButton = document.getElementById('checkoutButton');
     const hiddenInput = document.getElementById('hiddenInput');
     var total_cards = 0;
 
     // Clear the cart list
     cartList.innerHTML = '';
-    Total_html.innerHTML = '';
+    total_html.innerHTML = '';
 
     // Collect selected items
     const selectedItems = [];
