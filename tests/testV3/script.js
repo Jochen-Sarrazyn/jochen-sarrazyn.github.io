@@ -2,7 +2,7 @@
 fetch('photos.txt')
     .then(response => {
         if (!response.ok) {
-            throw new Error('Failed to load photos.txt');
+            throw new Error('Failed to load cards.txt');
         }
         return response.text();
     })
@@ -40,6 +40,7 @@ function updateCart() {
     const cartList = document.getElementById('selectedPhotos');
     const checkoutButton = document.getElementById('checkoutButton');
     const hiddenInput = document.getElementById('hiddenInput');
+    var total_cards = 0;
 
     // Clear the cart list
     cartList.innerHTML = '';
@@ -60,7 +61,11 @@ function updateCart() {
             const listItem = document.createElement('li');
             listItem.textContent = `${description} - Aantal: ${quantity}`;
             cartList.appendChild(listItem);
+            total_cards += quantity;
         }
+        const total_text = document.createElement('p');
+        total_text.textContent = `Totaal: ${total_cards}`;
+        cartList.appendChild(total_text)
     });
 
     // Populate the hidden form input with the selected items as a JSON string
