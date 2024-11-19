@@ -68,7 +68,7 @@ function updateCart() {
     });
 
     // Display total amount of cards
-    const total_text = document.createElement('p');
+    //const total_text = document.createElement('p');
     total_text.textContent = `Totaal: ${total_cards}`;
     total_html.appendChild(total_text);
 
