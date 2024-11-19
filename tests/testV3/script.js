@@ -38,12 +38,14 @@ fetch('photos.txt')
 function updateCart() {
     const cards = document.querySelectorAll('.photo-card');
     const cartList = document.getElementById('selectedPhotos');
+    const total_html = document.getElementById('TotalCards');
     const checkoutButton = document.getElementById('checkoutButton');
     const hiddenInput = document.getElementById('hiddenInput');
     var total_cards = 0;
 
     // Clear the cart list
     cartList.innerHTML = '';
+    Total_html.innerHTML = '';
 
     // Collect selected items
     const selectedItems = [];
@@ -65,6 +67,11 @@ function updateCart() {
         }
     });
 
+    // Display total amount of cards
+    const total_text = document.createElement('p');
+    total_text.textContent = `Totaal: ${total_cards}`;
+    total_html.appendChild(total_text);
+
     // Populate the hidden form input with the selected items as a JSON string
     hiddenInput.value = JSON.stringify(selectedItems);
 
@@ -76,9 +83,5 @@ function updateCart() {
 document.addEventListener('input', (event) => {
     if (event.target.classList.contains('quantity-input')) {
         updateCart();
-        // Display total amount of cards
-        const total_text = document.createElement('p');
-        total_text.textContent = `Totaal: ${total_cards}`;
-        cartList.appendChild(total_text);
     }
 });
