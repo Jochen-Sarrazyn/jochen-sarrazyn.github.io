@@ -38,7 +38,7 @@ fetch('photos.txt')
 function updateCart() {
     const cards = document.querySelectorAll('.photo-card');
     const cartList = document.getElementById('selectedPhotos');
-    const total_html = document.getElementById('totalCards');
+    var total_html = document.getElementById('totalCards');
     const checkoutButton = document.getElementById('checkoutButton');
     const hiddenInput = document.getElementById('hiddenInput');
     var total_cards = 0;
@@ -69,8 +69,8 @@ function updateCart() {
 
     // Display total amount of cards
     //const total_text = document.createElement('p');
-    total_text.textContent = `Totaal: ${total_cards}`;
-    total_html.appendChild(total_text);
+    var cardTotal = document.createTextNode(`Totaal: ${total_cards}`);
+    total_html.appendChild(cardTotal);
 
     // Populate the hidden form input with the selected items as a JSON string
     hiddenInput.value = JSON.stringify(selectedItems);
