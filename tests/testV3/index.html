@@ -41,11 +41,35 @@
         <h2>Your Selection</h2>
         <ul id="selectedPhotos"></ul>
         <form id="checkoutForm" action="https://formspree.io/meqarbpj" method="POST">
+            <h2>Contact Informatie</h2>
+              <label for="name">*Naam:</label>
+              <input type="text" name="name" id="name" required>
+        
+              <label for="email">*E-mail:</label>
+              <input type="email" name="email" id="email" required>
+        
+              <label for="phone">Telefoonnummer:</label>
+              <input type="tel" name="phone" id="phone">
+        
+              <label for="street">*Straatnaam en huisnummer:</label>
+              <input type="text" name="street" id="street" required>
+        
+              <label for="postal">*Postcode:</label>
+              <input type="text" name="postal" id="postal" required>
+        
+              <label for="city">*Woonplaats:</label>
+              <input type="text" name="city" id="city" required>
+        
+              <label for="comments">Opmerkingen:</label>
+              <input type="text" name="comments" id="comments">
             <input type="hidden" name="selectedItems" id="hiddenInput">
             <p></p>
               <button id="checkoutButton type="submit">Verzend</button>
         </form>
     </div>
+    
+    <p><br>Na verwerking ontvang je een bevestigings mail van de gekozen kaartjes<br><br></p>
+    <p>Bij problemen kan je ons bereiken via jochensarrazyn@gmail.com<br><br><br></p>
 
     <script src="script.js"></script>
 </body>
