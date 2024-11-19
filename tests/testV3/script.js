@@ -54,10 +54,10 @@ function updateCart() {
 
         // Add to cart and hidden form if quantity > 0
         if (quantity > 0) {
-            selectedItems.push({ description, fileName, quantity });
+            selectedItems.push({ fileName, quantity });
 
             const listItem = document.createElement('li');
-            listItem.textContent = `${description} - ${fileName} - Quantity: ${quantity}`;
+            listItem.textContent = `${fileName} - Quantity: ${quantity}`;
             cartList.appendChild(listItem);
         }
     });
