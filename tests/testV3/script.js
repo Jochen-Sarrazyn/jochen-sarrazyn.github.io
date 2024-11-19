@@ -18,6 +18,7 @@ fetch('photos.txt')
             const card = document.createElement('div');
             card.className = 'photo-card';
             card.dataset.fileName = fileName.trim();
+            card.dataset.description = description.trim();
 
             card.innerHTML = `
                 <img src="images/${fileName.trim()}" alt="${description?.trim() || ''}">
@@ -54,10 +55,10 @@ function updateCart() {
 
         // Add to cart and hidden form if quantity > 0
         if (quantity > 0) {
-            selectedItems.push({ fileName, quantity });
+            selectedItems.push({ description, fileName, quantity });
 
             const listItem = document.createElement('li');
-            listItem.textContent = `${fileName} - Quantity: ${quantity}`;
+            listItem.textContent = `${description},${fileName} - Quantity: ${quantity}`;
             cartList.appendChild(listItem);
         }
     });
