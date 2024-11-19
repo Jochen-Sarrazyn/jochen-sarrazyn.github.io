@@ -65,11 +65,6 @@ function updateCart() {
         }
     });
 
-    // Display total amount of cards
-    const total_text = document.createElement('p');
-    total_text.textContent = `Totaal: ${total_cards}`;
-    cartList.appendChild(total_text);
-
     // Populate the hidden form input with the selected items as a JSON string
     hiddenInput.value = JSON.stringify(selectedItems);
 
@@ -81,5 +76,9 @@ function updateCart() {
 document.addEventListener('input', (event) => {
     if (event.target.classList.contains('quantity-input')) {
         updateCart();
+        // Display total amount of cards
+        const total_text = document.createElement('p');
+        total_text.textContent = `Totaal: ${total_cards}`;
+        cartList.appendChild(total_text);
     }
 });
