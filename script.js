@@ -21,7 +21,7 @@ fetch('cards.txt')
             card.dataset.description = description?.trim();
 
             card.innerHTML = `
-                <img src="images/${fileName.trim()}" alt="${description?.trim() || ''}">
+                <img src="Cards/${fileName.trim()}" alt="${description?.trim() || ''}">
                 <p>${description?.trim() || 'No description'}</p>
                 <input type="number" min="0" value="0" class="quantity-input" placeholder="Quantity">
             `;
