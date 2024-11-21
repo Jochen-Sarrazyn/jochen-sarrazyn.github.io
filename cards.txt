@@ -11,7 +11,6 @@ ED23A6CH010.jpg,Gnome White
 ED23A6CH011.jpg,Blue gnome sled
 ED23A6CH012.jpg,Red gnome sled
 ED23A6CH013.jpg,Green gnome sled
-ED23A6CH014.jpg,"weg"
 ED23A6CH015.jpg,Merry christmas red gloves
 ED23A6CH016.jpg,Merry christmas blue gloves
 ED23A6CH017.jpg,Heart gloves
