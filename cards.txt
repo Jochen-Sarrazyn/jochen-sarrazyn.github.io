@@ -11,6 +11,7 @@ ED23A6CH010.jpg,Gnome White
 ED23A6CH011.jpg,Blue gnome sled
 ED23A6CH012.jpg,Red gnome sled
 ED23A6CH013.jpg,Green gnome sled
+ED23A6CH014.jpg,"weg"
 ED23A6CH015.jpg,Merry christmas red gloves
 ED23A6CH016.jpg,Merry christmas blue gloves
 ED23A6CH017.jpg,Heart gloves
@@ -64,3 +65,5 @@ ED24A6CH031.jpg,Ijsbeer
 ED24A6CH032.jpg,FA LA LA LA LAMA
 ED24A6CH033.jpg,Merry Christmas sock
 ED24A6CH034.jpg,Christmas tree
+ED24A6CH035.jpg,Eigen tekst 1 (via opmerking)
+ED24A6CH036.jpg,Eigen tekst 2 (via opmerking)
